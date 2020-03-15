@@ -1,0 +1,114 @@
+commit 300fd269764766354f525ea9648130758e4cac75
+Author: Ville Savela <villesavela98@gmail.com>
+Date:   Sun Mar 15 17:06:25 2020 +0200
+
+    poistettu ja muokattu
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit a9900f30877bdc80d0c4b553e08011fde792454b
+Author: Ville Savela <villesavela98@gmail.com>
+Date:   Sun Mar 15 17:02:37 2020 +0200
+
+    tiedostoja lisätty
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 00df1339dbb01da5b3645c5e5a4afbdf2faed502
+Author: Ville Savela <villesavela98@gmail.com>
+Date:   Sun Mar 15 16:58:04 2020 +0200
+
+    muutoksia
+
+ eka.txt    | 8 +-------
+ kolmas.txt | 2 +-
+ 2 files changed, 2 insertions(+), 8 deletions(-)
+
+commit e088b5ea7abf8a850ff77fa7c236281a3edfef04
+Author: Ville Savela <villesavela98@gmail.com>
+Date:   Sun Mar 15 16:55:26 2020 +0200
+
+    nimi muutettu
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ac5fc46b2b5ab272c37864d4c84d1e99c6e8a0f8
+Author: Ville Savela <villesavela98@gmail.com>
+Date:   Sun Mar 15 16:53:52 2020 +0200
+
+    toinen poistettu
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit bfc171166911fcd680c4e137af6b71c5427b856f
+Author: Ville Savela <villesavela98@gmail.com>
+Date:   Sun Mar 15 16:51:26 2020 +0200
+
+    tekstiä muokattu
+
+ tiedosto.txt | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+commit b7a9abe9fe51114c58f25b514696f63cb1de537f
+Author: Ville Savela <villesavela98@gmail.com>
+Date:   Sun Mar 15 16:48:44 2020 +0200
+
+    epäluotettavia faktoja lisätty
+
+ tiedosto.txt | 500 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 500 insertions(+)
+
+commit db432e9c61e54c38e20278d80bc7249ec9978f03
+Author: Ville Savela <villesavela98@gmail.com>
+Date:   Sun Mar 15 16:45:23 2020 +0200
+
+    Stuff lisätty
+
+ stuff/tavaraa.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 6905e3a4302dc8736d17b04d7f592574802e9a5b
+Author: Ville Savela <villesavela98@gmail.com>
+Date:   Sun Mar 15 16:43:40 2020 +0200
+
+    muutos toiseen ja kolmanteen
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 24af5bfcca6a8dfa4097ec1789536b6eb5e6eb49
+Author: Ville Savela <villesavela98@gmail.com>
+Date:   Sun Mar 15 16:42:20 2020 +0200
+
+    kolmas lisätty
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 275f907de51dae2213e5ce4e696408624a5d330e
+Author: Ville Savela <villesavela98@gmail.com>
+Date:   Sun Mar 15 16:39:54 2020 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit f3fbd52d84bb19cfcd26878a54a33af68328aa1c
+Author: Ville Savela <villesavela98@gmail.com>
+Date:   Sun Mar 15 16:37:43 2020 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
