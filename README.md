@@ -1,5 +1,5 @@
 # README
-*Tässä linkit ekoihin tehtäviin*
+*Tässä linkit tehtäviin*
 
 **Viikko 1**
 
