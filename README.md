@@ -1,14 +1,24 @@
-# README
-*Tässä linkit tehtäviin*
+# Pacman
+Sovellus on versio pacman-pelistä. Pelin tavoite on kerätä kaikki pisteet sokkelosta ja vältellä vihollisia.
 
-**Viikko 1**
+##Komentorivitoiminnot
 
-[gitlog.txt](https://github.com/Villsave/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+Projektin voi suorittaa komennolla
+```
+mvn compile exec:java -Dexec.mainClass=pacman.Main
+```
+Testit suoritetaan komennolla
 
-[komentorivi.txt](https://github.com/Villsave/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+```
+mvn test
+```
+Testikattavuusraportti voidaan luoda komennolla
 
-**Viikko 2**
+```
+mvn jacoco:report
+```
+Jar-tiedosto voidaan tehdä komennolla
 
-[Dokumentointi](https://github.com/Villsave/ot-harjoitustyo/blob/master/dokumentointi/Otsovellus.md)
-
-[Tehtävät](https://github.com/Villsave/ot-harjoitustyo/tree/master/laskarit/viikko2)
+```
+mvn package
+```
