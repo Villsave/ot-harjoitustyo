@@ -5,6 +5,7 @@ Sovellus on versio pacman-pelistä. Pelin tavoite on kerätä kaikki pisteet sok
 **Toiminnallisuudet**
 
 - Hahmoa ohjatan nuolinäppäimillä
+- Hahmo pysähtyy törmätessään seinään
 - Peli pitää kirjaa parhaista pisteistä
 - Peli näyttää pelaajalle jäljellä olevat elämät ja kerätyt pisteet
 - Pelissä on useita tasoja
