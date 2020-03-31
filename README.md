@@ -1,6 +1,9 @@
 # Pacman
 Sovellus on versio pacman-pelistä. Pelin tavoite on kerätä kaikki pisteet sokkelosta ja vältellä vihollisia.
 
+## Dokumentaatio
+[Vaatimusmäärittely](https://github.com/Villsave/ot-harjoitustyo/blob/master/dokumentointi/Otsovellus.md)
+
 ## Komentorivitoiminnot
 
 Projektin voi suorittaa komennolla
