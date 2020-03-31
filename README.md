@@ -3,6 +3,7 @@ Sovellus on versio pacman-pelistä. Pelin tavoite on kerätä kaikki pisteet sok
 
 ## Dokumentaatio
 [Vaatimusmäärittely](https://github.com/Villsave/ot-harjoitustyo/blob/master/dokumentointi/Otsovellus.md)
+[Tuntikirjanpito](https://github.com/Villsave/ot-harjoitustyo/blob/master/dokumentointi/Tuntikirjanpito.md)
 
 ## Komentorivitoiminnot
 
