@@ -1,7 +1,7 @@
 # Pacman
 Sovellus on versio pacman-pelistä. Pelin tavoite on kerätä kaikki pisteet sokkelosta ja vältellä vihollisia.
 
-##Komentorivitoiminnot
+## Komentorivitoiminnot
 
 Projektin voi suorittaa komennolla
 ```
