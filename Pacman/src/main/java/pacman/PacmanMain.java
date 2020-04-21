@@ -118,6 +118,12 @@ public class PacmanMain extends Application {
                     pacman.setVelocity(-50,0);
                 }
                 
+                for (Ghost ghost : ghosts) {
+                    if(((int)ghost.getPositionX() - 60) % 32 == 0 && ((int)ghost.getPositionY() - 65) % 32 == 0 ) {
+                        ghost.checkDirection();
+                    }
+                }
+                
 
                 pacman.move(elapsedTime);
                 ghosts.forEach(ghost ->

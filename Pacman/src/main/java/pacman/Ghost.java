@@ -3,17 +3,17 @@ package pacman;
 
 import java.util.ArrayList;
 import java.util.Random;
-import javafx.geometry.Rectangle2D;
 
 public class Ghost extends Objects {
     
+    private String[] board;
     private int direction;
     private ArrayList <Integer> possibleDirections;
     
     public Ghost( int x, int y) {
         setPosition(x, y);
-        setImage("file:ghost_1.png", 32, 32);
-        
+        setImage("file:ghost_1.png", 32, 32);        
+        board = Level.getLevel();
     }
     
     public void checkDirection(){
@@ -22,10 +22,6 @@ public class Ghost extends Objects {
         checkLeft();
         checkUp();
         checkDown();
-        
-        if (possibleDirections.isEmpty()) {
-            moveGhost(-this.direction);
-        }
         
         if (possibleDirections.size() == 1){
             moveGhost(this.direction);
@@ -40,47 +36,44 @@ public class Ghost extends Objects {
     }
     
     private void checkRight () {
-        for (Objects wall : Constants.walls) {
-            if (touchWall() == false){
-                continue;
-            }
-            if (touchWall() && this.direction != -1){
-                possibleDirections.add(1);
-            }
+        if(this.direction == 2){
+            return;
+        }
+        String row = board[((int) this.getPositionY() - 65) / 32];
+        char column = row.charAt(((int)this.getPositionX() - 60) / 32 + 1);
+        if (column != '0' && this.getVelocityX() != -50){
+            possibleDirections.add(1);
         }
     }
     
     private void checkLeft () {
-        for (Objects wall : Constants.walls) {
-            if (touchWall() == false){
-                continue;
-            }
-            if (touchWall() && this.direction != 1) {
-                possibleDirections.add(-1);
-            }
+        String row = board[((int) this.getPositionY() - 65) / 32];
+        char column = row.charAt(((int)this.getPositionX() - 60) / 32 - 1);
+        if (column != '0' && this.getVelocityX() != 50){
+            possibleDirections.add(2);
         }
     }
     
     private void checkDown () {
-        for (Objects wall : Constants.walls) {
-            if (touchWall() == false){
-                continue;
-            }
-            if (touchWall() && this.direction != -2) {
-                possibleDirections.add(2);
-            }
+        if(this.direction == 4) {
+            return;
+        }
+        String row = board[((int) this.getPositionY() - 65) / 32 + 1];
+        char column = row.charAt(((int)this.getPositionX() - 60) / 32);
+        if (column != '0' && this.getVelocityY() != -50){
+            possibleDirections.add(3);
         }
     }
     
     private void checkUp () {
-        for (Objects wall : Constants.walls) {
-            if (touchWall() == false){
-                continue;
-            }
-            if (touchWall() && this.direction != 2){
-                possibleDirections.add(-2);
-            }
-        } 
+        if(this.direction == 3) {
+            return;
+        }
+        String row = board[((int) this.getPositionY() - 65) / 32 - 1];
+        char column = row.charAt(((int)this.getPositionX() - 60) / 32);
+        if (column != '0' && this.getVelocityY() != 50){
+            possibleDirections.add(4);
+        }
     }
     
     private void moveGhost(int direction) {
@@ -88,44 +81,17 @@ public class Ghost extends Objects {
             case 1:
                 this.setVelocity(50, 0);
                 break;
-            case -1:
+            case 2:
                 this.setVelocity(-50, 0);
                 break;
-            case 2:
+            case 3:
                 this.setVelocity(0, 50);
                 break;
-            case -2:
+            case 4:
                 this.setVelocity(0, -50);
                 break;
             default:
                 break;
         }
-    }
-    
-    private boolean touchWall(){
-        double nextX = this.getPositionX();
-        double nextY = this.getPositionY();
-        switch (direction) {
-        case 1:
-          nextX += 32 * 0.5;
-          break;
-        case -1:
-          nextX -= 32 * 0.5;
-          break;
-        case 2:
-          nextY -= 32 * 0.5;
-          break;
-        case -2:
-          nextY += 32 * 0.5;
-          break;
-        default:
-      }
-      Rectangle2D test = new Rectangle2D (nextX, nextY, 27, 27); 
-        for (Objects wall : Constants.walls) {
-            if (test.intersects(wall.getBoundary())) {
-                return false;
-            }
-        }
-        return true;
     }
 }
