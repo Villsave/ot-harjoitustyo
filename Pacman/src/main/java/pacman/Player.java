@@ -1,29 +1,25 @@
 
 package pacman;
 
-import javafx.geometry.Point2D;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-
+import javafx.scene.image.Image;
 
 public class Player extends Objects {
     
-    private Circle character;
+    public int lives;
     
-    public Player(int x, int y) {
-        super(new Circle(30, 50, 13), x, y, Color.YELLOW);
-    }
-    
-    public void movePlayer(double dx, double dy) {
-        if (dx == 0 && dy == 0) {
-            return;
-        }
+    public Player() {
+        Image[] imageArray = new Image[2];
+        imageArray[0] = new Image("file:pacman_1.png", 27, 27, false, false);
+        imageArray[1] = new Image("file:pacman_2.png", 27, 27, false, false);
+        frames = imageArray;
+        duration = 0.100;
+        setPosition(100, 100);
+        lives = 3;
         
-        Point2D newDirection = new Point2D(dx, dy);
-        setMovement(newDirection);
     }
-    public int u(){
-        return 2;
+    public Image getFrame(double time){
+        int index = (int)((time % (frames.length * duration)) / duration);
+        return frames[index];
     }
 }
     

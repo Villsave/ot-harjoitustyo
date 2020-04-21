@@ -1,75 +1,92 @@
 
 package pacman;
 
-import javafx.geometry.Point2D;
-import javafx.scene.shape.Shape;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.geometry.Rectangle2D;
 
 public abstract class Objects {
     
-    private Shape object;
-    private Color color;
-    private Point2D movement;
+    private Image image;
+    private double positionX;
+    private double positionY;
+    private double width;
+    private double height;
+    private double velocityX;
+    private double velocityY;
+    public Image[] frames;
+    public double duration;
     
-    public Objects(Shape shape, double x, double y, Color color) {
+    public Objects() {
         
-        this.object = shape;
-        this.object.setTranslateX(x);
-        this.object.setTranslateY(y);
-        this.object.setFill(color);
-        this.movement = new Point2D(0, 0);
+        this.positionX = 0;
+        this.positionY = 0;
+        velocityX = 0;
+        velocityY = 0;
+    }
+
+    public void setImage(String filename, int x, int y) {
+        this.image = new Image(filename, x, y, false, false);
     }
     
-    public Shape getObject() {
-        
-        return this.object;
+    public void setPosition(double x, double y) {
+        positionX = x;
+        positionY = y;
     }
     
-    public int getTranslateX() {
-        return (int) this.object.getTranslateX();
+    public void setPositionX(double x) {
+        positionX = x;
     }
     
-    public void setTranslateX(int x) {
-        this.object.setTranslateX(x);
+    public void setPositionY(double y) {
+        positionY = y;
     }
     
-    public int getTranslateY() {
-        return (int) this.object.getTranslateY();
+    public double getPositionX(){
+        return positionX;
     }
     
-    public void setTranslateY(int y) {
-        this.object.setTranslateY(y);
+    public double getPositionY(){
+        return positionY;
     }
     
-    public boolean collision(Objects other) {
-        Shape collision = Shape.intersect(this.object, other.getObject());
-        return collision.getBoundsInLocal().getWidth() != -1;
-    }
-    
-    public void move() {
-        this.object.setTranslateX(this.object.getTranslateX() + this.movement.getX());
-        this.object.setTranslateY(this.object.getTranslateY() + this.movement.getY());
-        
-        if (this.object.getTranslateX() < 0) {
-            this.object.setTranslateX(this.object.getTranslateX() + 1000);
-        }
-        if (this.object.getTranslateX() > 1000) {
-            this.object.setTranslateX(this.object.getTranslateX() % 1000);
-        }
-        if (this.object.getTranslateY() < 0) {
-            this.object.setTranslateY(this.object.getTranslateY() + 600);
-        }
-        if (this.object.getTranslateY() > 600) {
-            this.object.setTranslateY(this.object.getTranslateY() % 600);
-        }
+    public void move(double time) {
+        positionX += velocityX * time;
+        positionY += velocityY * time;  
         
     }
-    
-    public void setMovement(Point2D newMovement) {
-        this.movement = newMovement;
+
+     public void render(GraphicsContext gc) {
+        gc.drawImage( image, positionX, positionY );
+    }
+
+    public Rectangle2D getBoundary() {
+        return new Rectangle2D(positionX, positionY, 27, 27);
+    }
+
+    public boolean intersects(Objects s) {
+        return this.getBoundary().intersects( s.getBoundary() );
     }
     
-    public Point2D getMovement() {
-        return this.movement;
+    public void setVelocity(double x, double y) {
+        velocityX = x;
+        velocityY = y;
     }
+
+    public double getVelocityY() {
+        return this.velocityY;
+    }
+    
+    public void setVelocityY(double y) {
+        this.velocityY = y;
+    }
+    
+    public int getVelocityX() {
+        return (int) this.velocityX;
+    }
+    
+    public void setVelocityX(double x) {
+        this.velocityX = x;
+    }
+    
 }
