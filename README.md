@@ -10,7 +10,7 @@ Sovellus on versio pacman-pelistä. Pelin tavoite on kerätä kaikki pisteet sok
 
 Projektin voi suorittaa komennolla
 ```
-mvn compile exec:java -Dexec.mainClass=pacman.Main
+mvn compile exec:java -Dexec.mainClass=pacmanui.Main
 ```
 Testit suoritetaan komennolla
 
