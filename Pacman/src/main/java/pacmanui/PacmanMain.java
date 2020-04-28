@@ -35,10 +35,7 @@ public class PacmanMain extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws SQLException {
-        
-        
-        
+    public void start(Stage stage) throws SQLException {    
         
         BorderPane startingMenu = new BorderPane();
         startingMenu.setPrefSize(1000, 600);
@@ -66,14 +63,14 @@ public class PacmanMain extends Application {
         
         startButton.setOnAction((event) -> {
             username = nameField.getText();         
-            if (username.length() >= 7) {
+            if (username.length() > 7) {
                 startGame.setText("Username too long.");
                 
             }
             if (username.equals("")) {
                 startGame.setText("Username must contain at least one character.");
                 
-            } else  {
+            } else if (!username.equals("") && username.length() <= 7) {
                 stage.setScene(scene);
             }
         });
