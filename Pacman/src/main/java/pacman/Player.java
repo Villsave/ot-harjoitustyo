@@ -17,10 +17,22 @@ public class Player extends Objects {
         lives = 3;
         
     }
-    public Image getFrame(double time){
-        int index = (int)((time % (frames.length * duration)) / duration);
+    public Image getFrame(double time) {
+        int index = (int) ((time % (frames.length * duration)) / duration);
         return frames[index];
     }
+    
+    public int checkLives() {
+        return this.lives;
+    }
+    
+    public void death() {
+        this.lives--;
+        setPosition(100, 100);
+        setVelocity(0, 0);
+    }
+        
+    
 }
     
     

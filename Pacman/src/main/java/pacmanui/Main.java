@@ -1,5 +1,5 @@
 
-package pacman;
+package pacmanui;
 
 public class Main {
 

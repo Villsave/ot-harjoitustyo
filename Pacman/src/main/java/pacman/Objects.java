@@ -10,8 +10,8 @@ public abstract class Objects {
     private Image image;
     private double positionX;
     private double positionY;
-    private double width;
-    private double height;
+    private int width;
+    private int height;
     private double velocityX;
     private double velocityY;
     public Image[] frames;
@@ -23,6 +23,14 @@ public abstract class Objects {
         this.positionY = 0;
         velocityX = 0;
         velocityY = 0;
+    }
+    
+    public int getWidth() {
+        return this.width;
+    }
+    
+    public int getHeight() {
+        return this.height;
     }
 
     public void setImage(String filename, int x, int y) {
@@ -42,11 +50,11 @@ public abstract class Objects {
         positionY = y;
     }
     
-    public double getPositionX(){
+    public double getPositionX() {
         return positionX;
     }
     
-    public double getPositionY(){
+    public double getPositionY() {
         return positionY;
     }
     
@@ -56,8 +64,8 @@ public abstract class Objects {
         
     }
 
-     public void render(GraphicsContext gc) {
-        gc.drawImage( image, positionX, positionY );
+    public void render(GraphicsContext gc) {
+        gc.drawImage(image, positionX, positionY);
     }
 
     public Rectangle2D getBoundary() {
@@ -65,7 +73,7 @@ public abstract class Objects {
     }
 
     public boolean intersects(Objects s) {
-        return this.getBoundary().intersects( s.getBoundary() );
+        return this.getBoundary().intersects(s.getBoundary());
     }
     
     public void setVelocity(double x, double y) {

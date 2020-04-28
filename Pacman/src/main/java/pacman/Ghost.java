@@ -7,87 +7,102 @@ import java.util.Random;
 public class Ghost extends Objects {
     
     private String[] board;
-    private int direction;
-    private ArrayList <Integer> possibleDirections;
     
-    public Ghost( int x, int y) {
+    public enum Direction {
+        UP, DOWN, LEFT, RIGHT
+    }
+    private int index;
+    private Direction direction;
+    private Direction lastDirection;
+    private ArrayList<Direction> possibleDirections;
+    
+    public Ghost(int x, int y) {
         setPosition(x, y);
         setImage("file:ghost_1.png", 32, 32);        
         board = Level.getLevel();
     }
     
-    public void checkDirection(){
+    public void checkDirection() {
+        
         possibleDirections = new ArrayList<>();
-        checkRight();
-        checkLeft();
-        checkUp();
-        checkDown();
+        checkRight(lastDirection);
+        checkLeft(lastDirection);
+        checkUp(lastDirection);
+        checkDown(lastDirection);
         
-        if (possibleDirections.size() == 1){
-            moveGhost(this.direction);
-        }
-        
-        else if (possibleDirections.size() > 1){
+        if (possibleDirections.size() == 1) {
+            index = 0;
+            this.direction = possibleDirections.get(index);
+            moveGhost(direction);
+            lastDirection = direction;
+        } else if (possibleDirections.size() > 1) {
             Random rnd = new Random();
-            direction = rnd.nextInt(possibleDirections.size());
-            moveGhost(possibleDirections.get(direction));
+            index = rnd.nextInt(possibleDirections.size());
+            this.direction = possibleDirections.get(index);
+            moveGhost(direction);
+            lastDirection = direction;
         }
         
     }
     
-    private void checkRight () {
-        if(this.direction == 2){
+    private void checkRight(Direction lastDirection) {
+        if (this.getPositionX() > 900) {
             return;
-        }
+        }      
         String row = board[((int) this.getPositionY() - 65) / 32];
-        char column = row.charAt(((int)this.getPositionX() - 60) / 32 + 1);
-        if (column != '0' && this.getVelocityX() != -50){
-            possibleDirections.add(1);
+        char column = row.charAt(((int) this.getPositionX() - 60) / 32 + 1);
+        if (column != '0' && lastDirection != Direction.LEFT) {
+            possibleDirections.add(Direction.RIGHT);
         }
     }
     
-    private void checkLeft () {
+    private void checkLeft(Direction lastDirection) {
+        if (this.getPositionX() < 100) {
+            return;
+        }
+        
         String row = board[((int) this.getPositionY() - 65) / 32];
-        char column = row.charAt(((int)this.getPositionX() - 60) / 32 - 1);
-        if (column != '0' && this.getVelocityX() != 50){
-            possibleDirections.add(2);
+        char column = row.charAt(((int) this.getPositionX() - 60) / 32 - 1);
+        if (column != '0' && lastDirection != Direction.RIGHT) {
+            possibleDirections.add(Direction.LEFT);
         }
     }
     
-    private void checkDown () {
-        if(this.direction == 4) {
+    private void checkDown(Direction lastDirection) {
+        if (this.getPositionY() > 500) {
             return;
         }
+        
         String row = board[((int) this.getPositionY() - 65) / 32 + 1];
-        char column = row.charAt(((int)this.getPositionX() - 60) / 32);
-        if (column != '0' && this.getVelocityY() != -50){
-            possibleDirections.add(3);
+        char column = row.charAt(((int) this.getPositionX() - 60) / 32);
+        if (column != '0' && lastDirection != Direction.UP) {
+            possibleDirections.add(Direction.DOWN);
         }
     }
     
-    private void checkUp () {
-        if(this.direction == 3) {
+    private void checkUp(Direction lastDirection) {
+        if (this.getPositionY() < 100) {
             return;
         }
         String row = board[((int) this.getPositionY() - 65) / 32 - 1];
-        char column = row.charAt(((int)this.getPositionX() - 60) / 32);
-        if (column != '0' && this.getVelocityY() != 50){
-            possibleDirections.add(4);
+        char column = row.charAt(((int) this.getPositionX() - 60) / 32);
+        if (column != '0' && lastDirection != Direction.DOWN) {
+            possibleDirections.add(Direction.UP);
         }
     }
     
-    private void moveGhost(int direction) {
+    private void moveGhost(Direction direction) {
         switch (direction) {
-            case 1:
+            case RIGHT:
                 this.setVelocity(50, 0);
                 break;
-            case 2:
+            case LEFT:
                 this.setVelocity(-50, 0);
                 break;
-            case 3:
+            case DOWN:
                 this.setVelocity(0, 50);
                 break;
-            case 4:
+            case UP:
                 this.setVelocity(0, -50);
                 break;
             default:
