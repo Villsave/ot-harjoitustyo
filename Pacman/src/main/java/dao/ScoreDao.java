@@ -4,6 +4,10 @@ package dao;
 import java.util.*;
 import java.sql.*;
 
+/**
+ * Class to create and manage the database for high scores
+ */
+
 public class ScoreDao {
     private Connection connection;
     private Statement stmt;
@@ -16,7 +20,9 @@ public class ScoreDao {
             
         }
     }
-        
+    /**
+     * creating a new database if one doesn't exist
+     */
     public void createDatabase() {
             
         try {
@@ -26,7 +32,12 @@ public class ScoreDao {
             
         }
     }
-        
+    /**
+     * adding a ne score to the database
+     * @param name name of the player
+     * @param points players score
+     * @throws SQLException 
+     */  
     public void addScore(String name, int points) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(
             "INSERT INTO Leaderboard (Name, Score) VALUES (?, ?)");
@@ -35,6 +46,11 @@ public class ScoreDao {
         statement.executeUpdate();
     }
         
+    /**
+     * Method to read the high scores from the database
+     * @return high scores as an arraylist
+     * @throws SQLException 
+     */
     public ArrayList highScores() throws SQLException {
         ArrayList<String> scores = new ArrayList<>();
         PreparedStatement statement = connection.prepareStatement(

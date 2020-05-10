@@ -20,6 +20,10 @@ import static pacman.Constants.foods;
 import static pacman.Constants.ghosts;
 import static pacman.Constants.walls;
 
+/**
+ * Class for the game logic
+ */
+
 public class Game {
     
     private Pane gamePane;
@@ -35,9 +39,12 @@ public class Game {
     private Text lives;
     private ScoreDao scoredao;
     private String username;
+    private Scene endScene;
     
     
-    
+    /**
+     * Initializing the game and database
+     */
     public Game() throws SQLException {
         this.scoredao = new ScoreDao();
         scoredao.createDatabase();       
@@ -45,6 +52,7 @@ public class Game {
         initStage();
         createKeyListeners();
     }
+    
     private void createKeyListeners() {
         this.input = new ArrayList<>();
 
@@ -66,8 +74,14 @@ public class Game {
         gameStage = new Stage();
         gameStage.setScene(gameScene);
     }
-    
-    public void newGame(Stage menuStage, String username){
+    /**
+     * Starting a new game
+     * @param menuStage the starting menu
+     * @param username players name
+     * @param endScene view for when the game ends
+     */
+    public void newGame(Stage menuStage, String username, Scene endScene){
+        this.endScene = endScene;
         this.username = username;
         this.menuStage = menuStage;
         menuStage.hide();
@@ -115,6 +129,7 @@ public class Game {
         this.pacman = new Player();
     }
     
+    //Animation
     private void createGameLoop() {
         LongValue lastNanoTime = new LongValue(System.nanoTime());
         
@@ -138,10 +153,10 @@ public class Game {
                 Constants.ghosts.forEach(ghost ->
                     ghost.move(elapsedTime));
                 
-                Iterator<Objects> wallIter = Constants.walls.iterator();
+                Iterator<Wall> wallIter = Constants.walls.iterator();
                 while (wallIter.hasNext()) {
                     
-                    Objects wall = wallIter.next();
+                    Sprite wall = wallIter.next();
                     if (pacman.intersects(wall) &&  pacman.getPositionY() < wall.getPositionY()) {
                         pacman.setPosition(pacman.getPositionX(), pacman.getPositionY() - 1);
                     }
@@ -161,9 +176,9 @@ public class Game {
                 }
                 
                 
-                Iterator<Objects> foodIter = foods.iterator();
+                Iterator<Food> foodIter = foods.iterator();
                 while (foodIter.hasNext()) {
-                    Objects food = foodIter.next();
+                    Sprite food = foodIter.next();
                     if (pacman.intersects(food)) {
                         foodIter.remove();
                         text.setText("Points: " + points.addAndGet(10));
@@ -181,6 +196,7 @@ public class Game {
                         if (pacman.checkLives() == 0) {
                             stop();
                             gameStage.close();
+                            menuStage.setScene(endScene);
                             menuStage.show();
                             int score = points.get();
                             try {
@@ -216,6 +232,7 @@ public class Game {
         gameTimer.start();
     }
     
+    //Changing pacman to face the direction he is going in
     private void turnPacman() {
         if (input.contains("UP")) {
             pacman.setVelocity(0, -50);
@@ -233,5 +250,7 @@ public class Game {
             pacman.setVelocity(-50, 0);
             pacman.setImage("file:pacman_2.png", 27, 27);
         }        
-    } 
+    }
+    
+    
 }

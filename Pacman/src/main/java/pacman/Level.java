@@ -1,6 +1,9 @@
 
 package pacman;
 
+/**
+ * A string array which the stage is built on
+ */
 public class Level {
     private static String[]
             level = new String[] {

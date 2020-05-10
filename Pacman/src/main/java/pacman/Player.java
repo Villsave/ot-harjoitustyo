@@ -1,11 +1,13 @@
 
 package pacman;
 
-public class Player extends Objects {
+/**
+ * Class to create pacman
+ */
+public class Player extends Sprite {
     
-    public int lives;
-    
-    
+    private int lives;
+   
     public Player() {
         super("file:pacman_1.png", 27, 27, 100, 100);
         lives = 3;      
@@ -15,6 +17,9 @@ public class Player extends Objects {
         return this.lives;
     }
     
+    /**
+     * Method for losing a life and resetting the position on the board
+     */
     public void death() {
         this.lives--;
         setPosition(100, 100);

@@ -4,11 +4,15 @@ package pacman;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Ghost extends Objects {
+/**
+ * Class for creating and moving enemies
+ */
+
+public class Ghost extends Sprite {
     
     private String[] board;
     
-    public enum Direction {
+    private enum Direction {
         UP, DOWN, LEFT, RIGHT
     }
     private int index;
@@ -16,12 +20,21 @@ public class Ghost extends Objects {
     private Direction lastDirection;
     private ArrayList<Direction> possibleDirections;
     
+    /**
+     * Creating a new ghost
+     * @param x  new ghosts position on x axis
+     * @param y  new ghosts position on y axis
+     */
+    
     
     public Ghost(int x, int y) {
         super("file:ghost_1.png", 32, 32, x, y);        
         board = Level.getLevel();
     }
     
+    /**
+     * Checking possible directions for the ghost to move to
+     */
     public void checkDirection() {
         
         possibleDirections = new ArrayList<>();
@@ -91,6 +104,11 @@ public class Ghost extends Objects {
         }
     }
     
+    /**
+     * Moving ghost in a given direction
+     * @param direction  a direction where the ghost will be moving
+     */
+    
     public void moveGhost(Direction direction) {
         switch (direction) {
             case RIGHT:
@@ -109,6 +127,7 @@ public class Ghost extends Objects {
                 break;
         }
     }
+    
     public ArrayList GetDirections() {
         return this.possibleDirections;
     }
