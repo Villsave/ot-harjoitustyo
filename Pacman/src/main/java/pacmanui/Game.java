@@ -54,11 +54,7 @@ public class Game {
      * Initializing the game and database
      */
     public Game() {
-        try {
-            this.scoredao = new ScoreDao();
-        } catch (SQLException ex) {
-            Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        this.scoredao = new ScoreDao();
         scoredao.createDatabase();       
         
         initStage();
@@ -274,11 +270,7 @@ public class Game {
         menuStage.setScene(endScene);
         menuStage.show();
         int score = points.get();
-        try {
-            scoredao.addScore(username, score);
-        } catch (SQLException ex) {
-            Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        scoredao.addScore(username, score);
     }
     
     

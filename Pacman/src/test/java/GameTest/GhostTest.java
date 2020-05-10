@@ -1,3 +1,5 @@
+package GameTest;
+
 
 import java.util.ArrayList;
 import org.junit.After;
@@ -39,7 +41,7 @@ public class GhostTest {
     public void ghostDoesntMoveIntoWall() {
         ghost.setPosition(92, 97);
         ghost.checkDirection();
-        assertEquals(2, ghost.GetDirections().size());
+        assertEquals(2, ghost.getDirections().size());
     }
     
 }
