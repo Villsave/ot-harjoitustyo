@@ -1,7 +1,7 @@
 
 package domain;
 
-public class Block extends Sprite{
+public class Block extends Sprite {
     public enum BlockType {
         FOOD, WALL
     }  

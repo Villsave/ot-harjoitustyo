@@ -106,7 +106,7 @@ public class Ghost extends Sprite {
     /**
      * Method to raise ghosts speed
      */
-    public void raiseSpeed(){
+    public void raiseSpeed() {
         this.speed += 0.5;
     }
     
@@ -134,7 +134,7 @@ public class Ghost extends Sprite {
         }
     }
     
-    public ArrayList GetDirections() {
+    public ArrayList getDirections() {
         return this.possibleDirections;
     }
 }

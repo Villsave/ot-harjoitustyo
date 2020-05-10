@@ -53,8 +53,12 @@ public class Game {
     /**
      * Initializing the game and database
      */
-    public Game() throws SQLException {
-        this.scoredao = new ScoreDao();
+    public Game() {
+        try {
+            this.scoredao = new ScoreDao();
+        } catch (SQLException ex) {
+            Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         scoredao.createDatabase();       
         
         initStage();
@@ -88,7 +92,7 @@ public class Game {
      * @param username players name
      * @param endScene view for when the game ends
      */
-    public void newGame(Stage menuStage, String username, Scene endScene){
+    public void newGame(Stage menuStage, String username, Scene endScene) {
         this.endScene = endScene;
         this.username = username;
         this.menuStage = menuStage;
@@ -127,7 +131,7 @@ public class Game {
                     wall.setPosition(j * 32 + 60, i * 32 + 65);
                     Constants.walls.add(wall);
                 }
-                if (line.charAt(j) == '1' || line.charAt(j) == '2') {
+                if (line.charAt(j) != '0') {
                     Block food = new Block(BlockType.FOOD);
                     food.setImage("file:food.png", 8, 8);
                     food.setPosition(12 + j * 32 + 60,   12 + i * 32 + 65);
@@ -200,7 +204,7 @@ public class Game {
                     if (pacman.intersects(food)) {
                         foodIter.remove();
                         text.setText("Points: " + points.addAndGet(10));
-                        for(Ghost ghost : Constants.ghosts) {
+                        for (Ghost ghost : Constants.ghosts) {
                             ghost.raiseSpeed();
                         }
                     }
