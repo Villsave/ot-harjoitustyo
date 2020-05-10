@@ -16,3 +16,7 @@ brick.png
 ```
 
 ## Käynnistys
+Ohjelman voi käynnistää komennolla
+```
+java -jar Pacman.jar
+```
