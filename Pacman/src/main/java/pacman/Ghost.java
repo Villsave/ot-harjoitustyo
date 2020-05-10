@@ -16,9 +16,9 @@ public class Ghost extends Objects {
     private Direction lastDirection;
     private ArrayList<Direction> possibleDirections;
     
+    
     public Ghost(int x, int y) {
-        setPosition(x, y);
-        setImage("file:ghost_1.png", 32, 32);        
+        super("file:ghost_1.png", 32, 32, x, y);        
         board = Level.getLevel();
     }
     
@@ -91,7 +91,7 @@ public class Ghost extends Objects {
         }
     }
     
-    private void moveGhost(Direction direction) {
+    public void moveGhost(Direction direction) {
         switch (direction) {
             case RIGHT:
                 this.setVelocity(50, 0);
@@ -108,5 +108,8 @@ public class Ghost extends Objects {
             default:
                 break;
         }
+    }
+    public ArrayList GetDirections() {
+        return this.possibleDirections;
     }
 }

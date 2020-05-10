@@ -38,11 +38,11 @@ public class ScoreDao {
     public ArrayList highScores() throws SQLException {
         ArrayList<String> scores = new ArrayList<>();
         PreparedStatement statement = connection.prepareStatement(
-            "SELECT * FROM Leaderboard ORDER BY points DESC");
+            "SELECT * FROM Leaderboard ORDER BY Score DESC");
         ResultSet results = statement.executeQuery();
         int i = 1;
         while (results.next()) {
-            scores.add(i + " " + results.getInt("Score") + ", " + results.getString("Name"));
+            scores.add(i + ". " + results.getInt("Score") + " - " + results.getString("Name") + "\n");
             i++;
         }
         return scores;

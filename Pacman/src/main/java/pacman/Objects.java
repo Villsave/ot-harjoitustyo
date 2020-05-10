@@ -14,23 +14,13 @@ public abstract class Objects {
     private int height;
     private double velocityX;
     private double velocityY;
-    public Image[] frames;
-    public double duration;
+
     
-    public Objects() {
-        
-        this.positionX = 0;
-        this.positionY = 0;
+    public Objects(String file,  int width, int height, double x, double y) {  
+        this.image = new Image(file, width, height, false, false);
+        this.setPosition(x, y);
         velocityX = 0;
         velocityY = 0;
-    }
-    
-    public int getWidth() {
-        return this.width;
-    }
-    
-    public int getHeight() {
-        return this.height;
     }
 
     public void setImage(String filename, int x, int y) {
