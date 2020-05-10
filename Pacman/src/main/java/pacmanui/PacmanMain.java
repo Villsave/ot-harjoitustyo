@@ -16,12 +16,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import pacman.*;
 
 
 public class PacmanMain extends Application {
     
     private String username;
+    private int ghostAmount;
     private ArrayList<String> scores;
     private Text text;
     
@@ -69,10 +69,10 @@ public class PacmanMain extends Application {
         scoredao.createDatabase();  
      
         startButton.setOnAction((event) -> {
-            username = nameField.getText();         
+            
+            username = nameField.getText().replaceAll("\\s+","");         
             if (username.length() > 7) {
-                startGame.setText("Username too long.");
-                
+                startGame.setText("Username too long.");                
             }
             if (username.equals("")) {
                 startGame.setText("Username must contain at least one character.");

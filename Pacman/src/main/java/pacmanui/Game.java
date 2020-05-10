@@ -1,5 +1,5 @@
 
-package pacman;
+package pacmanui;
 
 import dao.ScoreDao;
 import java.sql.SQLException;
@@ -16,6 +16,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import pacman.Block;
+import pacman.Block.BlockType;
+import pacman.Constants;
+import pacman.Ghost;
+import pacman.Level;
+import pacman.LongValue;
+import pacman.Player;
+import pacman.Sprite;
 import static pacman.Constants.foods;
 import static pacman.Constants.ghosts;
 import static pacman.Constants.walls;
@@ -111,22 +119,32 @@ public class Game {
         String[] board = Level.getLevel();
         for (int i = 0; i < board.length; i++) {
             String line = board[i];
+            int g = 0;
             for (int j = 0; j < line.length(); j++) {
                 if (line.charAt(j) == '0') {
-                    Wall wall = new Wall(j * 32 + 60, i * 32 + 65);
+                    Block wall = new Block(BlockType.WALL);
+                    wall.setImage("file:brick.png", 32, 32);
+                    wall.setPosition(j * 32 + 60, i * 32 + 65);
                     Constants.walls.add(wall);
                 }
-                if (line.charAt(j) == '1') {
-                    Food food = new Food(12 + j * 32 + 60,   12 + i * 32 + 65);
+                if (line.charAt(j) == '1' || line.charAt(j) == '2') {
+                    Block food = new Block(BlockType.FOOD);
+                    food.setImage("file:food.png", 8, 8);
+                    food.setPosition(12 + j * 32 + 60,   12 + i * 32 + 65);
                     Constants.foods.add(food);
                 }
-                if (line.charAt(j) == '3') {
-                    Ghost ghost = new Ghost(j * 32 + 60, i * 32 + 65);
+                if (line.charAt(j) == '2') {
+                    Ghost ghost = new Ghost();
+                    ghost.setImage("file:ghost_" + g + ".png", 32, 32);
+                    ghost.setPosition(j * 32 + 60, i * 32 + 65);
                     Constants.ghosts.add(ghost);
+                    g++;
                 }
             }
         }      
         this.pacman = new Player();
+        pacman.setImage("file:pacman_1.png", 27, 27);
+        pacman.setPosition(100, 100);
     }
     
     //Animation
@@ -153,7 +171,7 @@ public class Game {
                 Constants.ghosts.forEach(ghost ->
                     ghost.move(elapsedTime));
                 
-                Iterator<Wall> wallIter = Constants.walls.iterator();
+                Iterator<Block> wallIter = Constants.walls.iterator();
                 while (wallIter.hasNext()) {
                     
                     Sprite wall = wallIter.next();
@@ -176,16 +194,20 @@ public class Game {
                 }
                 
                 
-                Iterator<Food> foodIter = foods.iterator();
+                Iterator<Block> foodIter = foods.iterator();
                 while (foodIter.hasNext()) {
                     Sprite food = foodIter.next();
                     if (pacman.intersects(food)) {
                         foodIter.remove();
                         text.setText("Points: " + points.addAndGet(10));
+                        for(Ghost ghost : Constants.ghosts) {
+                            ghost.raiseSpeed();
+                        }
                     }
                 }
                 if (foods.isEmpty()) {
                     stop();
+                    endGame();
                 }
                 
                 Iterator<Ghost> ghostIter = ghosts.iterator();
@@ -195,15 +217,7 @@ public class Game {
                         pacman.death();
                         if (pacman.checkLives() == 0) {
                             stop();
-                            gameStage.close();
-                            menuStage.setScene(endScene);
-                            menuStage.show();
-                            int score = points.get();
-                            try {
-                                scoredao.addScore(username, score);
-                            } catch (SQLException ex) {
-                                Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-                            }
+                            endGame();
                         }
                         text.setText("Points: " + points.addAndGet(-100));
                         lives.setText("Lives: " + pacman.checkLives());
@@ -250,6 +264,17 @@ public class Game {
             pacman.setVelocity(-50, 0);
             pacman.setImage("file:pacman_2.png", 27, 27);
         }        
+    }
+    private void endGame() {
+        gameStage.close();
+        menuStage.setScene(endScene);
+        menuStage.show();
+        int score = points.get();
+        try {
+            scoredao.addScore(username, score);
+        } catch (SQLException ex) {
+            Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
     }
     
     

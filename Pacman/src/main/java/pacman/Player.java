@@ -9,8 +9,7 @@ public class Player extends Sprite {
     private int lives;
    
     public Player() {
-        super("file:pacman_1.png", 27, 27, 100, 100);
-        lives = 3;      
+        this.lives = 3;      
     }
     
     public int checkLives() {

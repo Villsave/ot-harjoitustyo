@@ -21,18 +21,9 @@ public abstract class Sprite {
 
     /**
      * Creating a new Sprite
-     * @param file  filename for an image to use
-     * @param width  the width of the sprite on the screen
-     * @param height the height of the sprite on the screen
-     * @param x sprites position on x axis
-     * @param y sprites position on y axis
      */
-    public Sprite(String file, int width, int height, double x, double y) {  
-        this.image = new Image(file, width, height, false, false);
-        this.setPositionX(x);
-        this.setPositionY(y);
-        velocityX = 0;
-        velocityY = 0;
+    public Sprite() {  
+       
     }
     /**
      * Setting the image to represent a block in the game

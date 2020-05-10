@@ -12,24 +12,24 @@ public class Ghost extends Sprite {
     
     private String[] board;
     
-    private enum Direction {
+    /**
+     * enums for directions the ghost can move in
+     */
+    public enum Direction {
         UP, DOWN, LEFT, RIGHT
     }
     private int index;
     private Direction direction;
     private Direction lastDirection;
     private ArrayList<Direction> possibleDirections;
+    private double speed;
     
     /**
      * Creating a new ghost
-     * @param x  new ghosts position on x axis
-     * @param y  new ghosts position on y axis
-     */
-    
-    
-    public Ghost(int x, int y) {
-        super("file:ghost_1.png", 32, 32, x, y);        
+     */    
+    public Ghost() {    
         board = Level.getLevel();
+        speed = 50;
     }
     
     /**
@@ -103,6 +103,12 @@ public class Ghost extends Sprite {
             possibleDirections.add(Direction.UP);
         }
     }
+    /**
+     * Method to raise ghosts speed
+     */
+    public void raiseSpeed(){
+        this.speed += 0.5;
+    }
     
     /**
      * Moving ghost in a given direction
@@ -112,16 +118,16 @@ public class Ghost extends Sprite {
     public void moveGhost(Direction direction) {
         switch (direction) {
             case RIGHT:
-                this.setVelocity(50, 0);
+                this.setVelocity(speed, 0);
                 break;
             case LEFT:
-                this.setVelocity(-50, 0);
+                this.setVelocity(-speed, 0);
                 break;
             case DOWN:
-                this.setVelocity(0, 50);
+                this.setVelocity(0, speed);
                 break;
             case UP:
-                this.setVelocity(0, -50);
+                this.setVelocity(0, -speed);
                 break;
             default:
                 break;

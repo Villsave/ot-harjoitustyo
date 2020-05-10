@@ -15,16 +15,17 @@ public class GhostTest {
     
     @Before
     public void setUp() {
-        ghost = new Ghost(150, 100);
+        ghost = new Ghost();
     }
     
     @Test
     public void collidingWithGhostKills() {
+        ghost.setPosition(150, 100);
         Player pacman = new Player();
+        pacman.setPosition(150, 100);
         if (pacman.intersects(ghost)) {
             pacman.death();
         }
-        pacman.setPosition(150, 100);
         assertEquals(2, pacman.checkLives());
     }
     
