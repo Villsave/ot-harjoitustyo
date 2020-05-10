@@ -1,5 +1,5 @@
 
-package pacman;
+package domain;
 
 public class Block extends Sprite{
     public enum BlockType {

@@ -1,5 +1,5 @@
 
-package pacman;
+package domain;
 
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;

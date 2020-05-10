@@ -45,7 +45,8 @@ public class PacmanMain extends Application {
         Button startButton = new Button("start"); 
         Button scoreButton = new Button("scores");
         Button endButton = new Button("exit");
-        startPane.getChildren().addAll(startGame, nameField, startButton, scoreButton, endButton);
+        this.text = new Text("");
+        startPane.getChildren().addAll(startGame, nameField, startButton, scoreButton, endButton, text);
         startingMenu.setCenter(startPane);
         Scene startScene = new Scene(startingMenu);
         stage.setScene(startScene);
@@ -91,24 +92,24 @@ public class PacmanMain extends Application {
         });  
 
         scoreButton.setOnAction((event) -> {
+            String s = "";
             try {
                 this.scores = scoredao.highScores();
             } catch (SQLException ex) {
                 System.out.println("Error");
             }
             if(scores.isEmpty()){
-                this.text = new Text(300, 50, "No scores yet!");
-                startPane.getChildren().add(text);
+                this.text.setText("No scores yet!");
             } else if (scores.size() > 5) {
                 for (int i = 0; i < 5; i++) {
-                    this.text = new Text(300, 50 * i + 1, scores.get(i));
-                    startPane.getChildren().add(text);
+                    s += scores.get(i) + "\n";
                 }
+                this.text.setText(s);
             } else {
                 for (int i = 0; i < scores.size(); i++) {
-                    this.text = new Text(300, 50 * i + 1, scores.get(i));
-                    startPane.getChildren().add(text);
+                    s += scores.get(i) + "\n";                  
                 }
+                this.text.setText(s);
             }
         });
         

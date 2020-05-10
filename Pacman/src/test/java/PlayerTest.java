@@ -1,7 +1,7 @@
 
 import org.junit.Before;
 import org.junit.Test;
-import pacman.Player;
+import domain.Player;
 import static org.junit.Assert.*;
 
 

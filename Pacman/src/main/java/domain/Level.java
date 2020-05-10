@@ -1,5 +1,5 @@
 
-package pacman;
+package domain;
 
 /**
  * A string array which the stage is built on

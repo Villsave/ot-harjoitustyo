@@ -1,5 +1,5 @@
 
-package pacman;
+package domain;
 
 /**
  * Class to create pacman

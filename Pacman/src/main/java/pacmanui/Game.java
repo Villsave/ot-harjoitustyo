@@ -16,17 +16,17 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import pacman.Block;
-import pacman.Block.BlockType;
-import pacman.Constants;
-import pacman.Ghost;
-import pacman.Level;
-import pacman.LongValue;
-import pacman.Player;
-import pacman.Sprite;
-import static pacman.Constants.foods;
-import static pacman.Constants.ghosts;
-import static pacman.Constants.walls;
+import domain.Block;
+import domain.Block.BlockType;
+import domain.Constants;
+import domain.Ghost;
+import domain.Level;
+import domain.LongValue;
+import domain.Player;
+import domain.Sprite;
+import static domain.Constants.foods;
+import static domain.Constants.ghosts;
+import static domain.Constants.walls;
 
 /**
  * Class for the game logic

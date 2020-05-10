@@ -8,11 +8,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import pacman.Block;
-import pacman.Constants;
+import domain.Block;
+import domain.Constants;
 import pacmanui.Game;
-import pacman.Level;
-import pacman.Player;
+import domain.Level;
+import domain.Player;
 
 public class GameTest {
     Game game;
